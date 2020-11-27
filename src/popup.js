@@ -91,17 +91,23 @@ return(
 
        
 <label className="container"  id="box_a">Delivering Lecture
-  <input  name="deliver_lec"  onClick={this.toggle}  type="checkbox" c/>
+  {this.props.check=="lecture"?
+  <input  name="deliver_lec"  onClick={this.toggle}  type="checkbox" checked/>:
+  <input  name="deliver_lec"  onClick={this.toggle}  type="checkbox" />}
   <span className="checkmark"></span>
 </label>
 
 <label className="container"  id="box_b">Starting Projects
-  <input name="start_proj"    onClick={this.toggle} type="checkbox"/>
+ {this.props.check=="project"?
+  <input name="start_proj"    onClick={this.toggle} type="checkbox" checked/>:
+  <input name="start_proj"    onClick={this.toggle} type="checkbox"/>}
   <span className="checkmark"></span>
 </label>
 
 <label className="container"  id="box_c">Conducting Workshops
-  <input  name="conduct_workshop"   onClick={this.toggle} type="checkbox"/>
+{this.props.check=="workshop"?
+  <input  name="conduct_workshop"   onClick={this.toggle} type="checkbox" checked/>:
+  <input  name="conduct_workshop"   onClick={this.toggle} type="checkbox" />}
   <span className="checkmark"></span>
 </label>
 

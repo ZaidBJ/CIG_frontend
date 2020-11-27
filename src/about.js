@@ -11,6 +11,7 @@ import View from './view.js';
 import vis from './images/vis_about.svg';
 import mis from './images/mis_about.svg';
 import obj from './images/obj_about.svg';
+import {url} from './config';
 import axios from "axios";
 
 class About extends Component {
@@ -41,7 +42,7 @@ componentDidMount(){
   axios({
     method : "GET",
     withCredentials : true,
-    url : "http://localhost:3001/team/adminBody"
+    url :  url + "adminBody"
   }).then((d)=>{
     this.setState({adminBody : d.data});
     console.log("adminBody set");
@@ -49,7 +50,7 @@ componentDidMount(){
   axios({
     method : "GET", 
     withCredentials : true,
-    url : "http://localhost:3001/team/studentBody"
+    url :  url + "studentBody"
   }).then((d)=>{
     this.setState({studentBody:d.data});
     console.log("studentBody set");

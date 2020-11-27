@@ -20,6 +20,7 @@ import {Link} from 'react-router-dom';
 import CLS from './cls.js'
 import './home.css';
 import axios from "axios";
+import {url} from './config';
 
 //alert(window.innerWidth);
 class Home extends Component {
@@ -47,7 +48,7 @@ componentDidMount(){
   axios({
     method : "GET",
     withCredentials : true,
-    url : "http://localhost:3001/testimonial"
+    url :  url + "testimonial"
   }).then((d)=>{
     console.log("data");
     this.setState({testimonialArr : d.data});

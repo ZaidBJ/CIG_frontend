@@ -4,6 +4,7 @@ import Login from  './login.js';
 import feat_rect from './images/feat_rect.png';
 import icon from './images/feat_icon.png';
 import axios from "axios";
+import {url} from './config';
 import './featured.css';
 class Featured extends Component {
 constructor(props)

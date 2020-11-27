@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './event.css';
+import {url} from './config';
 import eve from './images/eve.svg';
 import poly from './images/Polygon.svg';
 import imge from './images/noRecruit.svg';
@@ -15,13 +16,12 @@ constructor(props)
 {
   super(props);
   this.state={events:[
-    // {id:1,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    // {id:2,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    // {id:3,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
-    // {id:4,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+     //{id:1,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+     //{id:2,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+     //{id:3,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
+     //{id:4,topic:"Topic for the event", date:"January 19,2020",details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
   ],
   editVisibles: {},
-  bg:false
   };
 }
 
@@ -30,7 +30,7 @@ componentDidMount(){
     axios({
       method : "GET",
       withCredentials : true,
-      url : "http://localhost:3001/events"
+      url : url + "events"
     }).then((d)=>{
       console.log("data coming");
       console.log(d);
@@ -48,8 +48,7 @@ showEditDiv = id => {
     editVisibles: {
       ...prevState.editVisibles,
       [id]: !prevState.editVisibles[id]
-    },
-    bg:!this.state.bg
+    }
   }));
 };
 
@@ -67,22 +66,22 @@ render(){
       </div>
       <div className="timeline_head">Timeline for our events</div>
       
-      <div className={`timeline ${!this.state.bg? "visible": "unvisible"}`}>
+      <div className="timeline">
         <ul>
         {this.state.events.map((eve,index)=>(
           <li>
-            <div className="text" key={eve.id} >
+            <div className="text" key={index} >
               <div className="topic">{eve.heading}</div>
-              <div className={`design ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`}>
-                <div className={`detail ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`}>{eve.content}</div>
+              <div className={`design ${!this.state.editVisibles[index]? "visible": "unvisible"}`}>
+                <div className={`detail ${!this.state.editVisibles[index]? "visible": "unvisible"}`}>{eve.content}</div>
               
-                <img className={`back ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`} src={poly} ></img>
-                <img className={`back2 ${!this.state.editVisibles[eve.id]? "unvisible": "visible"}`} src={up} onClick={() => this.showEditDiv(eve.id)}></img>
-                <div  className={`expand ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`} onClick={() => this.showEditDiv(eve.id)}>
+                <img className={`back ${!this.state.editVisibles[index]? "visible": "unvisible"}`} src={poly} ></img>
+                <img className={`back2 ${!this.state.editVisibles[index]? "unvisible": "visible"}`} src={up} onClick={() => this.showEditDiv(index)}></img>
+                <div  className={`expand ${!this.state.editVisibles[index]? "visible": "unvisible"}`} onClick={() => this.showEditDiv(index)}>
                   <div>Expand</div>
                   <img src={ar}></img>
                 </div>
-                <div className={`expand2 ${!this.state.editVisibles[eve.id]? "unvisible": "visible"}`}>
+                <div className={`expand2 ${!this.state.editVisibles[index]? "unvisible": "visible"}`}>
                   <img  className ="imgWidth" src={imge}></img>
                 </div>
               

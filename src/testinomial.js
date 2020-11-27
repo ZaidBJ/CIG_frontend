@@ -7,7 +7,7 @@ import Mask from './images/mask.png';
 import Comma from './images/comma.svg';
 import Line from './images/line.svg';
 import axios from "axios";
-
+import {url} from './config';
 
 class Testinomials extends Component {
 constructor(props)
@@ -40,7 +40,7 @@ return(
   <div>
   <div id="t_head">{this.props.info.heading}</div>
   <div id="t_content">{this.props.info.content}</div>
-  <img src={"http://localhost:3001" + this.props.info.image} id="t_img"/>
+  <img src={ url + this.props.info.image} id="t_img"/>
   <img src={Comma} id="t_comma"/>
   <img src={Line} id="t_line"/>
   <div id="t_name"> {this.props.info.name}</div>
