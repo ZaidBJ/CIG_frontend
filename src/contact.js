@@ -15,7 +15,7 @@ import Success from './success.js';
 import Form from './form.js'
 import cig_map from './images/cig_map.png';
 import axios from "axios";
-
+import {url} from './config';
 class Contact extends Component {
 constructor(props)
 {
@@ -29,7 +29,7 @@ constructor(props)
 componentDidMount(){
     axios({
       method : "GET",
-      url  : "http://localhost:3001/dean_chaiperson",
+      url  : url+"dean_chaiperson",
       withCredentials : true
     }).then((d)=>{
       console.log("dean and chairperson data",d.data[0]);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import './form.css';
 import axios from "axios";
-
+import {url} from './config';
 
 
 class Form extends Component {
@@ -51,7 +51,7 @@ submit(e){
     method : "POST",
     data : dataObj,
     withCredentials : true,
-    url : "http://localhost:3001/org",
+    url : url+"org",
   }).then((m)=>{
     console.log(m);
   })

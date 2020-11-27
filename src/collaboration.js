@@ -25,6 +25,7 @@ import Success from './success.js';
 import Popup from './popup.js'
 import CLS from './cls.js'
 import axios from "axios";
+import {url} from './config';
 
 //alert(window.innerWidth);
 class Colloboration extends Component {
@@ -43,7 +44,8 @@ constructor(props)
   // {date:" 5 sept 2019",name:"Ratan Tata",icon:Comp,img:Mask,heading:"Convergence of Geo-spatial Technology   in AI and IoT for New India ",des:"Director, ESRI India Technologies LTD"}
   // ], 
   images:[{img:Img},{img:prv1},{img:prv2},{img:prv3},{img:prv4},{img:prv5},{img:prv6},{img:prv7}],
-  CLS : []
+  CLS : [],
+  check:" "
 
 }
 
@@ -51,7 +53,9 @@ constructor(props)
 this.scroll_bar= React.createRef();
  this.visible= this.visible.bind(this);
  this.hide= this.hide.bind(this);
- this.form_vis= this.form_vis.bind(this);
+ this.form_vis1= this.form_vis1.bind(this);
+ this.form_vis2= this.form_vis2.bind(this);
+ this.form_vis3= this.form_vis3.bind(this);
  this.form_hide= this.form_hide.bind(this);
  this.slide=this.slide.bind(this);
  this.getViewportSize=this.getViewportSize.bind(this)
@@ -63,7 +67,7 @@ componentDidMount(){
   axios({
     method : "GET",
     withCredentials : true,
-    url : "http://localhost:3001/cls"
+    url : url+"cls"
   }).then((d)=>{
     console.log("data coming");
     console.log(d);
@@ -92,8 +96,8 @@ visible(){
   this.setState({visible:true});
 }
 
-form_vis(){
-
+form_vis1(){
+this.setState({check:"lecture"});
   (this.form_ref.current).style.display="block";
    window.onclick = (event) =>{
   if (event.target == (this.form_ref.current)) {
@@ -101,6 +105,26 @@ form_vis(){
   }
 }
 }
+
+form_vis2(){
+  this.setState({check:"workshop"});
+    (this.form_ref.current).style.display="block";
+     window.onclick = (event) =>{
+    if (event.target == (this.form_ref.current)) {
+      (this.form_ref.current).style.display = "none";
+    }
+  }
+  }
+
+  form_vis3(){
+    this.setState({check:"project"});
+      (this.form_ref.current).style.display="block";
+       window.onclick = (event) =>{
+      if (event.target == (this.form_ref.current)) {
+        (this.form_ref.current).style.display = "none";
+      }
+    }
+    }
 
 form_hide(){
 
@@ -173,14 +197,14 @@ workshops and lecture series with different coorporations and industries</div>
 <img  id="line_a" src={line}/>
 
   <div className="row_view">
-    <div  onClick ={this.form_vis} className="column_view">
+    <div  onClick ={this.form_vis1} className="column_view">
     < View   icon={lec_img} data={this.state.lecture}/>
       </div>
-      <div onClick ={this.form_vis}  className="column_view">
+      <div onClick ={this.form_vis2}  className="column_view">
       <View icon={work_img} data={this.state.workshop}/>
        </div>
 
-      <div  onClick ={this.form_vis} className="column_view">
+      <div  onClick ={this.form_vis3} className="column_view">
       <View icon={proj_img} data={this.state.project}/>
       </div>
        </div>
@@ -205,7 +229,7 @@ workshops and lecture series with different coorporations and industries</div>
        <Collab/>
        <div ref={this.form_ref} id="myModal" className="modal">
       
-       <Popup id="modal-content" hide={this.form_hide}  visible={this.visible}/>
+       <Popup id="modal-content" hide={this.form_hide}  visible={this.visible} check={this.state.check}/>
       
        </div>
 

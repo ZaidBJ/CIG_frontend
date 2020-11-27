@@ -10,6 +10,7 @@ import img7 from './images/no-recruit-illustration.svg';
 import vector from './images/upload.svg';
 import vector2 from './images/download.svg';
 import axios from "axios";
+import {url} from './config';
 import Helpers from "./Helper.js";
     
 class Recruitment extends Component{
@@ -48,7 +49,7 @@ class Recruitment extends Component{
         axios({
           method : "GET",
           withCredentials : true,
-          url : "http://localhost:3001/faq"
+          url : url+"faq"
         }).then((d)=>{
           console.log("data coming");
           console.log(d);
@@ -59,7 +60,7 @@ class Recruitment extends Component{
         axios({
             method : "GET",
             withCredentials : true,
-            url : "http://localhost:3001/googleForm"
+            url : url+"googleForm"
           }).then((d)=>{
             console.log("data coming");
             console.log("googleForm",d);
@@ -83,7 +84,7 @@ class Recruitment extends Component{
           axios({
             method : "GET",
             withCredentials : true,
-            url : "http://localhost:3001/deadline"
+            url : url+"deadline"
           }).then((d)=>{
             console.log("data coming");
             console.log("deadline data",d);
@@ -111,7 +112,7 @@ handleDownload = (e) =>{
         //      withCredentials : true
         //  })
          Helpers.httpRequest(
-            "http://localhost:3001/download/"+e,
+            url+"download/"+e,
             "get",
           ).then((response) => response.blob())
             .then((blob) => {
@@ -219,7 +220,7 @@ render(){
                 <div className="img6"><img  className ="imgWidth" src={img6} /></div>
                 <div className="accordian">
                 {this.state.faqs.map((faq,index)=>(
-                    <div className={`contentBx ${!this.state.editVisibles[faq.id]? "unactive": "active"}`} onClick={()=>{this.handleClick(faq.id)}}>
+                    <div className={`contentBx ${!this.state.editVisibles[index]? "unactive": "active"}`} onClick={()=>{this.handleClick(index)}}>
                         <div className="label">{faq.question}</div>
                         <div className="answer">{faq.ans}</div>
                     </div>

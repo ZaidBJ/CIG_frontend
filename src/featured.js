@@ -4,6 +4,7 @@ import Login from  './login.js';
 import feat_rect from './images/feat_rect.png';
 import icon from './images/feat_icon.png';
 import axios from "axios";
+import {url} from './config';
 import './featured.css';
 class Featured extends Component {
 constructor(props)
@@ -20,7 +21,7 @@ componentDidMount(){
   axios({
     method : "GET",
     withCredentials : true,
-    url : "http://localhost:3001/featured"
+    url : url+"featured"
   }).then((d)=>{
     console.log("data coming feat");
     console.log(d);

@@ -7,7 +7,7 @@ import ar from './images/ar.svg';
 import up from './images/up.png';
 import 'font-awesome/css/font-awesome.min.css';
 import axios from "axios";
-
+import {url} from './config';
 
 
 class Event extends Component {
@@ -30,7 +30,7 @@ componentDidMount(){
     axios({
       method : "GET",
       withCredentials : true,
-      url : "http://localhost:3001/events"
+      url : url +"events"
     }).then((d)=>{
       console.log("data coming");
       console.log(d);
@@ -72,18 +72,18 @@ render(){
         <ul>
         {this.state.events.map((eve,index)=>(
           <li>
-            <div className="text" key={eve.id} >
+            <div className="text" key={index} >
               <div className="topic">{eve.heading}</div>
-              <div className={`design ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`}>
-                <div className={`detail ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`}>{eve.content}</div>
+              <div className={`design ${!this.state.editVisibles[index]? "visible": "unvisible"}`}>
+                <div className={`detail ${!this.state.editVisibles[index]? "visible": "unvisible"}`}>{eve.content}</div>
               
-                <img className={`back ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`} src={poly} ></img>
-                <img className={`back2 ${!this.state.editVisibles[eve.id]? "unvisible": "visible"}`} src={up} onClick={() => this.showEditDiv(eve.id)}></img>
-                <div  className={`expand ${!this.state.editVisibles[eve.id]? "visible": "unvisible"}`} onClick={() => this.showEditDiv(eve.id)}>
+                <img className={`back ${!this.state.editVisibles[index]? "visible": "unvisible"}`} src={poly} ></img>
+                <img className={`back2 ${!this.state.editVisibles[index]? "unvisible": "visible"}`} src={up} onClick={() => this.showEditDiv(index)}></img>
+                <div  className={`expand ${!this.state.editVisibles[index]? "visible": "unvisible"}`} onClick={() => this.showEditDiv(index)}>
                   <div>Expand</div>
                   <img src={ar}></img>
                 </div>
-                <div className={`expand2 ${!this.state.editVisibles[eve.id]? "unvisible": "visible"}`}>
+                <div className={`expand2 ${!this.state.editVisibles[index]? "unvisible": "visible"}`}>
                   <img  className ="imgWidth" src={imge}></img>
                 </div>
               

@@ -3,7 +3,7 @@ import './card.css';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import card_msg from './images/card-msg.svg'; 
 import card_mob from './images/card-mob.svg'; 
-
+import {url} from './config';
 
 
 class Card extends Component {
@@ -23,7 +23,7 @@ return(
        <div >
       <div id="big">
 
- <img src={"http://localhost:3001" + this.props.admin.image} id="img_card"/>
+ <img src={url + this.props.admin.image} id="img_card"/>
   <img src={card_msg} id="crd_msg" />
    <img src={card_mob}  id="crd_mob"/>
  <div id="nm">{this.props.admin.name} </div>

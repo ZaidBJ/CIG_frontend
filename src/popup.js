@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom';
 import './popup.css';
 import axios from "axios";
-
+import {url} from './config';
 
 
 class Popup extends Component {
@@ -71,7 +71,7 @@ submit(e){
     method : "POST",
     data : dataObj,
     withCredentials : true,
-    url : "http://localhost:3001/org",
+    url : url+"org",
   }).then((m)=>{
     console.log(m);
   })
@@ -117,17 +117,23 @@ return(
 
        
 <label className="container"  id="box_a">Delivering Lecture
-  <input  name="deliver_lec"  onClick={this.toggle}  type="checkbox" c/>
+{this.props.check=="lecture"?
+  <input  name="deliver_lec"  onClick={this.toggle}  type="checkbox" checked/>:
+  <input  name="deliver_lec"  onClick={this.toggle}  type="checkbox" />}
   <span className="checkmark"></span>
 </label>
 
 <label className="container"  id="box_b">Starting Projects
-  <input name="start_proj"    onClick={this.toggle} type="checkbox"/>
+{this.props.check=="project"?
+  <input name="start_proj"    onClick={this.toggle} type="checkbox" checked/>:
+  <input name="start_proj"    onClick={this.toggle} type="checkbox"/>}
   <span className="checkmark"></span>
 </label>
 
 <label className="container"  id="box_c">Conducting Workshops
-  <input  name="conduct_workshop"   onClick={this.toggle} type="checkbox"/>
+{this.props.check=="workshop"?
+  <input  name="conduct_workshop"   onClick={this.toggle} type="checkbox" checked/>:
+  <input  name="conduct_workshop"   onClick={this.toggle} type="checkbox"/>}
   <span className="checkmark"></span>
 </label>
 

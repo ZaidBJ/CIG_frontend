@@ -15,6 +15,7 @@ import Event from './event.js';
 import Recruitment from './recruitment';
 import Diaries from './diaries.js';
 import axios from "axios";
+import {url} from './config';
 class App extends Component {
 constructor(props)
 {
@@ -28,7 +29,7 @@ constructor(props)
 componentDidMount(){
     axios({
       method : "GET",
-      url : "http://localhost:3001/recruit",
+      url : url+"recruit",
       withCredentials : true
     }).then((d)=>{
       console.log("d for recruit",d);
