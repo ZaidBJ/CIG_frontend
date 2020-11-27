@@ -43,7 +43,7 @@ submit(e){
     email : stateObj.mail,
     phone :stateObj.Phone,
     interest :  my_interest,
-    msg:stateObj.msg
+    message:stateObj.msg
   }
 	this.props.visible();
   console.log("sending form data");
@@ -79,7 +79,7 @@ return(
        <div id="corp_focus"></div>
        <textarea  type="email" name="mail" required id="form_mail" className="no_outline" placeholder="Enter your e-mail address" onChange={this.handleChange}></textarea>
        <div id="mail_focus"></div>
-       <textarea  name="phone" required  id="form_phone" className="no_outline" placeholder="Enter your Phone number" onChange={this.handleChange}></textarea>
+       <textarea  name="Phone" required  id="form_phone" className="no_outline" placeholder="Enter your Phone number" onChange={this.handleChange}></textarea>
        <div id="phone_focus"></div>
         <textarea name="msg"   id="form_msg" className="no_outline" placeholder="Enter your Phone number" onChange={this.handleChange}/>
        <div id="msg_focus"></div>
